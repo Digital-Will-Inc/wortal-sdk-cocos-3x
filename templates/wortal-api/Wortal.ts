@@ -7,6 +7,7 @@ import * as _notifications from './api/Notifications';
 import * as _player from './api/Player';
 import * as _session from './api/Session';
 import * as _tournament from './api/Tournament';
+import { AuthResponse } from './interfaces/Wortal';
 
 /**
  * API for the Wortal SDK.
@@ -139,5 +140,25 @@ export class Wortal {
      */
     getSupportedAPIs(): string[] {
         return (window as any).Wortal.getSupportedAPIs();
+    }
+    
+    /**
+     * Starts the authentication process for the player. If the current platform has its own authentication prompt then
+     * this will be displayed.
+     * @example
+     * Wortal.authenticateAsync()
+     * .then(response => console.log(response));
+     * @param {AuthPayload} payload Optional payload for the authentication process.
+     * @returns {Promise<AuthResponse>} Promise that resolves with the response from the authentication process.
+     * @throws {ErrorMessage} See error.message for details.
+     * <ul>
+     * <li>AUTH_IN_PROGRESS</li>
+     * <li>USER_ALREADY_AUTHENTICATED</li>
+     * <li>USER_INPUT</li>
+     * <li>NOT_SUPPORTED</li>
+     * </ul>
+     */
+    authenticateAsync(payload?: any): Promise<AuthResponse> {
+        return (window as any).Wortal.authenticateAsync(payload);
     }
 }

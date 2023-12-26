@@ -24,3 +24,10 @@ export interface ErrorMessage {
     /** Context details about the error. */
     context: string;
 }
+
+export type AuthStatus = "success" | "error" | "cancel";
+
+export interface AuthResponse {
+    status: AuthStatus;
+}
+
